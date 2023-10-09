@@ -2,8 +2,8 @@ name: Update Tasks Text Files
 
 on:
   push:
-    paths:
-      - '**.csv'
+    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   update_files:
@@ -23,12 +23,13 @@ jobs:
           pip install pandas
 
       - name: Run script to update text files
-        run: python .github/scripts/update_tasks.py
+        run: python scripts/update_tasks.py
 
       - name: Commit and push changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --global user.email "${GITHUB_ACTOR_ID}+${GITHUB_ACTOR}@users.noreply.github.com"
+          git config --global user.name "$(gh api /users/${GITHUB_ACTOR} | jq .name -r)"
+          git config -l
           git add task1.txt task2.txt task3.txt
-          git commit -m "Update tasks text files" || echo "No changes to commit"
+          git commit -m "Update tasks text files"
           git push
