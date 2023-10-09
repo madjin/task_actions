@@ -58,7 +58,7 @@ top_3_tasks = sorted_tasks[:3]
 formatted_tasks = [f"{task['amount']} | {task['name']} | Date Posted: {task['date_posted']}" for task in top_3_tasks]
 
 # Directory to save the text files
-output_directory = './automation/top_tasks/'
+output_directory = 'dework/m3/'
 
 # Ensure the output directory exists
 if not os.path.exists(output_directory):
