@@ -1,3 +1,5 @@
+import os
+
 # Let's add diagnostic print statements to the existing script for debugging purposes
 
 # Starting with the directory where the CSVs are stored
